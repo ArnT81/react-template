@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import { gapi } from "gapi-script";
+import Authorized from "./components/Authorized";
+
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const clientId = process.env.REACT_APP_OATH_CLIENTID;
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ''
+      })
+    }
+
+    gapi.load('client:auth2', start)
+  }, []);
+
+
+  // gapi?.auth2?.getAuthInstance()?.currentUser?.get()?.getAuthResponse()?.access_token
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Login setIsLoggedIn={setIsLoggedIn} />
+      <Logout />
+
+      <Authorized isLoggedIn={isLoggedIn}>
+        hello
+      </Authorized>
     </div>
   );
 }
