@@ -1,39 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { gapi } from "gapi-script";
+//  COMPONENTS
 import Login from "./components/Login";
 import Logout from "./components/Logout";
-import { gapi } from "gapi-script";
-import Authorized from "./components/Authorized";
+import Protected from "./components/Protected";
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const clientId = process.env.REACT_APP_OATH_CLIENTID;
 
+  // gapi?.auth2?.getAuthInstance()?.currentUser?.get()?.getAuthResponse()?.access_token
   useEffect(() => {
-    function start() {
+    function initClient() {
       gapi.client.init({
         clientId: clientId,
         scope: ''
       })
     }
 
-    gapi.load('client:auth2', start)
+    gapi.load('client:auth2', initClient)
   }, []);
-
-
-  // gapi?.auth2?.getAuthInstance()?.currentUser?.get()?.getAuthResponse()?.access_token
-
-
-
 
   return (
     <div>
-      <Login setIsLoggedIn={setIsLoggedIn} />
+      <Login />
       <Logout />
 
-      <Authorized isLoggedIn={isLoggedIn}>
-        hello
-      </Authorized>
+      <Protected>
+        This is some protected content that will only show if you are logged in
+      </Protected>
     </div>
   );
 }

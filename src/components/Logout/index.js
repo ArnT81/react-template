@@ -1,20 +1,23 @@
 import React from 'react'
 import { GoogleLogout } from 'react-google-login';
+import { UserAuth } from '../../context/AuthContext';
 
 
 export default function Logout() {
+  const { updateUser, user } = UserAuth()
   const clientId = process.env.REACT_APP_OATH_CLIENTID;
 
-  const onSuccess = () => {
-    console.log('Logged out succesfully');
+  if (!user) {
+    return null
   }
 
-
-  return (
-    <GoogleLogout
-      clientId={clientId}
-      buttonText='Logout'
-      onLogoutSuccess={onSuccess}
-    />
-  )
+  else {
+    return (
+      <GoogleLogout
+        clientId={clientId}
+        buttonText='Logout'
+        onLogoutSuccess={() => updateUser()}
+      />
+    )
+  }
 }
