@@ -15,7 +15,7 @@ export default function Logout() {
     return (
       <GoogleLogout
         clientId={clientId}
-        buttonText='Logout'
+        buttonText='Logga ut'
         onLogoutSuccess={() => updateUser()}
       />
     )

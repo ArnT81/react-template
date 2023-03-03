@@ -1,13 +1,51 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto&family=Tangerine:wght@700&family=Ubuntu&display=swap');
+
+:root {
+  --font: 'Ubuntu';
+  --navbar-height: 72px;
+  --primary-color: #485F73;
+  --secondary-color: #171C26;
+  --complementary-color: #590B28;
+  --spacing: 16px;
+  --main-height: calc(100vh - var(--navbar-height))
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+::selection {
+  background: #007bff;
+}
+
+::-moz-selection {
+  background: #007bff;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: white;
+    color: #334;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #524d4d;
+    color: white;
+  }
 }

@@ -8,7 +8,7 @@ export default function Login() {
 	const { updateUser, user } = UserAuth()
 
 	const onFailure = (res) => {
-		console.log('Login failed, current user ', res);
+		console.log('Failed to Log in, current user ', res);
 	}
 
 	if (user) {
@@ -20,7 +20,7 @@ export default function Login() {
 			<>
 				<GoogleLogin
 					clientId={clientId}
-					buttonText='Sign in with Google'
+					buttonText='Logga in med Google'
 					onSuccess={(res) => updateUser(res.profileObj)}
 					onFailure={onFailure}
 					cookiePolicy='single_host_origin'

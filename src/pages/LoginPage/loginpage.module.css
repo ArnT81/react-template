@@ -1,0 +1,9 @@
+.loginpage {
+	display: grid;
+	place-items: center;
+	min-height: var(--main-height);
+}
+
+.loginpage>div {
+	text-align: center;
+}

@@ -4,13 +4,13 @@ const AuthContext = createContext()
 
 
 export const AuthContextProvider = ({ children }) => {
-	const [user, setUser] = useState({});
+	const [user, setUser] = useState();
 
 	const updateUser = (user) => {
 		if (user) {
 			setUser(user)
 		} else {
-			setUser(null)
+			setUser()
 		}
 	}
 
