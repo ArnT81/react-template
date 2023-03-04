@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import ProfileImage from '../../components/ProfileImage/ProfileImage';
 import styles from './navbar.module.css';
 
+
 export default function Navbar() {
 	return (
 		<div className={styles.navbar}>
@@ -26,6 +27,16 @@ export default function Navbar() {
 								textDecoration: 'none'
 							})}>
 							Om mig
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
+							to='users'
+							style={({ isActive }) => ({
+								color: isActive ? 'white' : '#485F73',
+								textDecoration: 'none'
+							})}>
+							Random Användare
 						</NavLink>
 					</li>
 				</ul>
