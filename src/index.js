@@ -13,9 +13,10 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import Protected from './components/Protected';
 import { NoMatchPage } from './pages/NoMatchPage/NoMatchPage';
 import AboutPage from './pages/AboutPage/AboutPage';
-import RandomUsers from './pages/RandomUsers/RandomUsers';
+import UsersPage from './pages/UsersPage/UsersPage';
 import { getUsers } from './helpers/users';
 import SingleUserPage from './pages/SingleUserPage/SingleUserPage';
+import ListUsersPage from './pages/ListUsersPage/ListUsersPage';
 
 
 const router = createBrowserRouter([
@@ -41,14 +42,21 @@ const router = createBrowserRouter([
       },
       {
         path: "users",
-        element: <RandomUsers />,
-        loader: getUsers,
+        element: <Protected><UsersPage /></Protected>,
+        children: [
+          {
+            path: "allusers",
+            element: <ListUsersPage />,
+            loader: getUsers,
+          },
+          {
+            path: ":id",
+            element: <SingleUserPage />,
+            loader: ({ params }) => getUsers(params)
+          }
+        ]
       },
-      {
-        path: "users/:id",
-        element: <SingleUserPage />,
-        loader: ({params}) => getUsers(params)
-      }
+
     ]
   }
 

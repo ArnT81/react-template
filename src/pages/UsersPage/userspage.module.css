@@ -1,0 +1,15 @@
+.userspage {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing);
+	min-height: var(--main-height);
+	padding: var(--spacing);
+}
+
+.userspage h1 {
+	text-align: center;
+}
+
+.userspage ul {
+	list-style: none;
+}
