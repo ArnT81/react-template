@@ -7,6 +7,7 @@ import {
 import './index.css';
 // import App from './App';
 import { AuthContextProvider } from './context/AuthContext';
+import { UserDeviceProvider } from './context/UserDeviceContext';
 import Layout from './pages/Layout';
 import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -65,6 +66,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <AuthContextProvider>
-    <RouterProvider router={router} />
+    <UserDeviceProvider>
+      <RouterProvider router={router} />
+    </UserDeviceProvider>
   </AuthContextProvider>
 );

@@ -1,12 +1,16 @@
 import React from 'react'
 import Container from '../../components/Container/Container'
 import styles from './aboutpage.module.css'
+import { Device } from '../../context/UserDeviceContext'
+
 
 export default function AboutPage() {
+	const { isMobile } = Device();
+	console.log(isMobile);
 	return (
 		<div className={styles.aboutpage}>
 			<h1>About me</h1>
-			<Container border='1px solid white' maxWidth='60%'>
+			<Container border='1px solid white' maxWidth={!isMobile && '60%'}>
 				<Container
 					flexDirection='row'
 					justifyContent='space-between'
