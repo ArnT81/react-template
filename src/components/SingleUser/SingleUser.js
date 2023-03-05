@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate, Link, useLoaderData } from 'react-router-dom';
-import Container from '../../components/Container/Container';
+import Container from '../Container/Container';
 import styles from './singleuserpage.module.css'
 
-export default function SingleUserPage() {
+export default function SingleUser() {
 	const [showContact, setShowContact] = useState(false);
 	const navigate = useNavigate();
 	const user = useLoaderData();
-
-	console.log(user);
 
 	if (user.error) {
 		return <>{user.error} </>
 	}
 
+
 	return (
 		<div className={styles.singleuserpage}>
-			<h1>SingleUserPage</h1>
+			<h1>User</h1>
 
 			<Container
 				width='fit-content'
@@ -33,8 +32,6 @@ export default function SingleUserPage() {
 				{showContact &&
 					<Container
 						background='white'
-						color='black'
-						width='fit-content'
 						border='1px solid black'
 					>
 						<p>city: {user.address.city}</p>

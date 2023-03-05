@@ -11,5 +11,12 @@
 }
 
 .userspage ul {
+	display: flex;
 	list-style: none;
+}
+
+.userspage li {
+	margin-inline: 20px;
+	margin-inline-start: 0;
+	text-decoration: underline;
 }

@@ -19,7 +19,7 @@ export default function Container({
 				display,
 				flexDirection,
 				background,
-				color,
+				color: color || (background === 'white' ? 'black' : 'white'),
 				padding,
 				cursor: onClick ? 'pointer' : 'default',
 				width,
@@ -38,7 +38,6 @@ Container.defaultProps = {
 	flexDirection: 'column',
 	gap: '16px',
 	background: 'black',
-	color: 'white',
 	padding: 16,
 	borderRadius: 8
 }

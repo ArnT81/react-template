@@ -26,7 +26,7 @@ export default function Navbar() {
 								color: isActive ? 'white' : '#485F73',
 								textDecoration: 'none'
 							})}>
-							Om mig
+							About me
 						</NavLink>
 					</li>
 					<li>
@@ -36,7 +36,7 @@ export default function Navbar() {
 								color: isActive ? 'white' : '#485F73',
 								textDecoration: 'none'
 							})}>
-							Random Användare
+							Fetch users
 						</NavLink>
 					</li>
 				</ul>

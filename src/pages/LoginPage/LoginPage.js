@@ -14,7 +14,7 @@ export default function LoginPage() {
 		return (
 			<div className={styles.loginpage}>
 				<div>
-					<h1>Var vänlig logga in</h1>
+					<h1>Please log in to see content</h1>
 					<Login />
 				</div>
 			</div>

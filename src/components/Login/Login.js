@@ -20,7 +20,7 @@ export default function Login() {
 			<>
 				<GoogleLogin
 					clientId={clientId}
-					buttonText='Logga in med Google'
+					buttonText='Log in with Google'
 					onSuccess={(res) => updateUser(res.profileObj)}
 					onFailure={onFailure}
 					cookiePolicy='single_host_origin'

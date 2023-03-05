@@ -1,11 +1,11 @@
 import React from 'react'
 import { useNavigate, useLoaderData } from 'react-router-dom';
-import Container from '../../components/Container/Container';
+import Container from '../Container/Container';
 
 
 
 
-export default function ListUsersPage() {
+export default function ListUsers() {
 	const navigate = useNavigate();
 	const users = useLoaderData();
 
@@ -13,14 +13,12 @@ export default function ListUsersPage() {
 		return <>{users.error}</>
 	}
 
-	console.log(users.id);
 
 	return (
 		<div>
-			<h4>Alla användare</h4>
-			<p>klicka på en användare för att se</p>
+			<h4>Alla users</h4>
+			<p>click a user to show detailed information</p>
 			<br />
-
 			<Container
 				background='white'
 				width='fit-content'
