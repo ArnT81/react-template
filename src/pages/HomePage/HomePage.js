@@ -22,10 +22,11 @@ export default function HomePage() {
 	}, [clientId]);
 
 	console.log(user);
+
+
 	return (
 		<div className={styles.homepage}>
-			<h1>Welcome {user.givenName}</h1>
-
+			<h1>Welcome {user.givenName || user.email}</h1>
 			<Logout />
 		</div>
 	)
