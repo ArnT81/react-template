@@ -1,7 +1,7 @@
 import React from 'react'
-import Login from '../../components/Login/Login'
-import { UserAuth } from '../../context/AuthContext'
 import { Navigate } from 'react-router-dom'
+import { UserAuth } from '../../context/AuthContext'
+import Login from '../../components/Login/Login'
 import styles from './loginpage.module.css'
 
 export default function LoginPage() {

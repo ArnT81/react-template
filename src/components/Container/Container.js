@@ -5,27 +5,37 @@ export default function Container({
 	onClick,
 	display,
 	flexDirection,
+	justifyContent,
+	alignItems,
+	flex,
+	maxWidth,
 	width,
 	gap,
 	background,
 	color,
 	padding,
 	border,
-	borderRadius
+	borderRadius,
+	margin
 }) {
 	return (
 		<div
 			style={{
 				display,
 				flexDirection,
+				justifyContent,
+				alignItems,
+				flex,
 				background,
 				color: color || (background === 'white' ? 'black' : 'white'),
 				padding,
 				cursor: onClick ? 'pointer' : 'default',
+				maxWidth,
 				width,
 				gap,
 				border,
-				borderRadius
+				borderRadius,
+				margin
 			}}
 			onClick={onClick}
 		>
