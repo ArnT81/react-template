@@ -5,7 +5,7 @@ import { UserAuth } from '../../context/AuthContext';
 
 export default function Logout() {
   const { updateUser, user } = UserAuth()
-  const clientId = process.env.REACT_APP_OATH_CLIENTID;
+  const clientId = process.env.REACT_APP_OAUTH_CLIENTID;
 
   if (!user) {
     return null

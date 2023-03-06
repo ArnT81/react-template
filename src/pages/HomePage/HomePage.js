@@ -8,7 +8,7 @@ import Button from '../../components/Button/Button'
 
 export default function HomePage() {
 	const { user } = UserAuth();
-	const clientId = process.env.REACT_APP_OATH_CLIENTID;
+	const clientId = process.env.REACT_APP_OAUTH_CLIENTID;
 	const [disabled, setDisabled] = useState(false)
 
 	// gapi?.auth2?.getAuthInstance()?.currentUser?.get()?.getAuthResponse()?.access_token

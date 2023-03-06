@@ -4,7 +4,7 @@ import { UserAuth } from '../../context/AuthContext'
 
 
 export default function Login() {
-	const clientId = process.env.REACT_APP_OATH_CLIENTID;
+	const clientId = process.env.REACT_APP_OAUTH_CLIENTID;
 	const { updateUser, user } = UserAuth()
 
 	const onFailure = (res) => {
