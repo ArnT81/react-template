@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link, useLoaderData } from 'react-router-dom';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
-import styles from './singleuserpage.module.css'
+import styles from './singleuserpage.module.css';
 
 export default function SingleUser() {
 	const [showContact, setShowContact] = useState(false);
@@ -46,10 +46,9 @@ export default function SingleUser() {
 
 			<Button
 				title='go back button'
-				disabled={false}
+				disabled={true}
 				onClick={() => navigate(-1)}
 			/>
-			
 			<br />
 			<br />
 			<Link to={-1}>
