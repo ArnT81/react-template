@@ -1,0 +1,7 @@
+.button {
+	padding: calc(var(--spacing)/2) var(--spacing);
+}
+
+.button::first-letter{
+	text-transform: uppercase;
+}

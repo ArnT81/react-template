@@ -6,7 +6,7 @@ import { Device } from '../../context/UserDeviceContext'
 
 export default function AboutPage() {
 	const { isMobile } = Device();
-	console.log(isMobile);
+
 	return (
 		<div className={styles.aboutpage}>
 			<h1>About me</h1>
