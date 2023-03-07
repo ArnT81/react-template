@@ -1,6 +1,5 @@
 .button {
 	padding: calc(var(--spacing)/2) var(--spacing);
-	/* padding: 50px; */
 }
 
 .button::first-letter{

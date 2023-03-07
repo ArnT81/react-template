@@ -6,10 +6,18 @@ import styles from './homepage.module.css'
 import Tooltip from '../../components/Tooltip/Tooltip'
 import Button from '../../components/Button/Button'
 
+
+/*//todo 
+"react-google-login": "^5.2.2" deprecated
+
+npm i @react-oauth / google instead
+https://www.npmjs.com/package/@react-oauth/google
+*/
+
 export default function HomePage() {
 	const { user } = UserAuth();
 	const clientId = process.env.REACT_APP_OAUTH_CLIENTID;
-	const [disabled, setDisabled] = useState(false)
+	const [disabled, setDisabled] = useState(true)
 
 	// gapi?.auth2?.getAuthInstance()?.currentUser?.get()?.getAuthResponse()?.access_token
 	useEffect(() => {
@@ -30,19 +38,18 @@ export default function HomePage() {
 			<h1>Welcome {user.givenName || user.email}</h1>
 
 			<Tooltip
-				// title='You can not click right now'
+				// title='You can not click this right now'
 				active={disabled}
-			// position='top'
+				position='right'
 			>
 				<Button
 					title='go back button'
 					disabled={disabled}
-				// onClick={log}
 				/>
 			</Tooltip>
 
 			<Button
-				title='change state'
+				title='toggle disabled'
 				onClick={() => setDisabled(!disabled)}
 			/>
 

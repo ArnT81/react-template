@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import Container from '../Container/Container'
 
 
-export default function Tooltip({ title, children, active, delay, position }) {
+export default function Tooltip({ title, children, active, delay, position, margin }) {
 	const [elements, setElements] = useState({
 		child: { width: 0, height: 0, left: 0, top: 0 },
 		tooltip: { width: 0, height: 0, left: 0, top: 0 }
@@ -14,7 +14,6 @@ export default function Tooltip({ title, children, active, delay, position }) {
 	useEffect(() => {
 		const childElement = childRef.current.getClientRects()[0];
 		const tooltipElement = tooltipRef?.current?.getClientRects()[0];
-
 
 		tooltipElement && setElements({
 			child: {
@@ -30,12 +29,12 @@ export default function Tooltip({ title, children, active, delay, position }) {
 				top: tooltipElement.y,
 			}
 		})
-	}, [childRef]);
+	}, []);
 
 	const showTooltipOnHover = (param) => {
-		param === true ? setShowTooltip(true) : setShowTooltip(false)
+		param ? setShowTooltip(true) : setShowTooltip(false)
 	}
-	//todo center tooltip if child height is higher than tooltip height ('right', 'left')
+
 	//todo fade in tooltip on delay
 	//todo onResize
 	//todo caret
@@ -43,62 +42,108 @@ export default function Tooltip({ title, children, active, delay, position }) {
 
 	const getPosition = (position) => {
 		const { child, tooltip } = elements;
-		// const margin = 8
-
 		const difference = {
 			x: Math.abs(child.width - tooltip.width),
 			y: Math.abs(child.height - tooltip.height)
 		}
 
+
 		if (position === 'top') {
-			return {
-				top: child.top - tooltip.height,
-				left: tooltip.width > child.width && child.left - difference.x / 2
+			const top = child.top - tooltip.height - margin;
+
+			if (child.width > tooltip.width) {
+				return {
+					top: top,
+					left: child.left + difference.x / 2
+				}
+			}
+			else {
+				return {
+					top: top,
+					left: child.left - difference.x / 2
+				}
 			}
 		}
+
 		else if (position === 'bottom') {
-			return {
-				top: child.top + child.height,
-				left: tooltip.width > child.width && child.left - difference.x / 2
+			const top = child.top + child.height + margin;
+
+			if (child.width > tooltip.width) {
+				return {
+					top: top,
+					left: child.left + difference.x / 2
+				}
+			}
+			else {
+				return {
+					top: top,
+					left: child.left - difference.x / 2
+				}
 			}
 		}
+
 		else if (position === 'left') {
-			return {
-				top: child.top - difference.y / 2,
-				left: child.left - tooltip.width,
+			const left = child.left - tooltip.width - margin;
+
+			if (child.height > tooltip.height) {
+				return {
+					top: child.top + difference.y / 2,
+					left: left
+				}
+			}
+			else {
+				return {
+					top: child.top - difference.y / 2,
+					left: left
+				}
 			}
 		}
+
 		else if (position === 'right') {
-			return {
-				top: child.top - difference.y / 2,
-				left: child.left + child.width,
+			const left = child.left + child.width + margin;
+
+			if (child.height > tooltip.height) {
+				return {
+					top: child.top + difference.y / 2,
+					left: left
+				}
+			}
+			else {
+				return {
+					top: child.top - difference.y / 2,
+					left: left
+				}
 			}
 		} else return
 	}
 
+	if (!active) {
+		return <div ref={childRef}>{children}</div>
+	}
 
 	return (
-		<>
+		<div>
 			<div
-				style={{ position: 'absolute', ...getPosition(position) }}
+				style={{ position: 'absolute', ...getPosition(position), opacity: showTooltip ? 1 : 0 }}
 				ref={tooltipRef}
 			>
-				{active && showTooltip &&
-					<Container >
-						{title}
-					</Container>
-				}
+				<Container >
+					{title}
+				</Container>
 			</div>
-			<div ref={childRef}
-				onMouseOver={() => showTooltipOnHover(true)}
-				onMouseLeave={() => showTooltipOnHover(false)}
+			<div
+				style={{ position: 'relative' }}
+				ref={childRef}
+				onMouseEnter={() => showTooltipOnHover('argument')}
+				onMouseLeave={() => showTooltipOnHover()}
 			>
 				{children}
 			</div>
-		</ >
+		</div >
 	)
 }
 Tooltip.defaultProps = {
 	title: 'Add title prop',
-	position: 'bottom'
+	position: 'bottom',
+	margin: 8
 }
