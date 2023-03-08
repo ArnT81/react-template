@@ -18,6 +18,8 @@ import UsersPage from './pages/UsersPage/UsersPage';
 import { getUsers } from './helpers/users';
 import SingleUser from './components/UserSingle/UserSingle';
 import UsersList from './components/UsersList/UsersList';
+import TooltipPage from './pages/TooltipPage/TooltipPage';
+import ModalPage from './pages/ModalPage/ModalPage';
 
 
 const router = createBrowserRouter([
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <Protected><AboutPage /></Protected>
+      },
+      {
+        path: "tooltip",
+        element: <TooltipPage />
+      },
+      {
+        path: "modal",
+        element: <ModalPage />
       },
       {
         path: "*",

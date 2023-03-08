@@ -5,6 +5,7 @@ import Logout from '../../components/Logout/Logout'
 import styles from './homepage.module.css'
 import Tooltip from '../../components/Tooltip/Tooltip'
 import Button from '../../components/Button/Button'
+import Modal from '../../components/Modal/Modal'
 
 
 /*//todo 
@@ -17,7 +18,6 @@ https://www.npmjs.com/package/@react-oauth/google
 export default function HomePage() {
 	const { user } = UserAuth();
 	const clientId = process.env.REACT_APP_OAUTH_CLIENTID;
-	const [disabled, setDisabled] = useState(true)
 
 	// gapi?.auth2?.getAuthInstance()?.currentUser?.get()?.getAuthResponse()?.access_token
 	useEffect(() => {
@@ -30,29 +30,13 @@ export default function HomePage() {
 
 		gapi.load('client:auth2', initClient)
 	}, [clientId]);
-
 	// console.log(user);
+
 
 	return (
 		<div className={styles.homepage}>
 			<h1>Welcome {user.givenName || user.email}</h1>
-
-			<Tooltip
-				title='This button is disabled'
-				active={disabled}
-			>
-				<Button
-					title='go back button'
-					disabled={disabled}
-				/>
-			</Tooltip>
-
-			<Button
-				title='toggle disabled'
-				onClick={() => setDisabled(!disabled)}
-			/>
-
-			<Logout />
+			<Logout/>
 		</div>
 	)
 }

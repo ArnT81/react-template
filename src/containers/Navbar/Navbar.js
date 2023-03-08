@@ -39,6 +39,26 @@ export default function Navbar() {
 							Fetch users
 						</NavLink>
 					</li>
+					<li>
+						<NavLink
+							to='tooltip'
+							style={({ isActive }) => ({
+								color: isActive ? 'white' : '#485F73',
+								textDecoration: 'none'
+							})}>
+							Tooltip example
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
+							to='modal'
+							style={({ isActive }) => ({
+								color: isActive ? 'white' : '#485F73',
+								textDecoration: 'none'
+							})}>
+							Modal example
+						</NavLink>
+					</li>
 				</ul>
 			</nav>
 			<ProfileImage />
