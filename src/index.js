@@ -20,6 +20,7 @@ import SingleUser from './components/UserSingle/UserSingle';
 import UsersList from './components/UsersList/UsersList';
 import TooltipPage from './pages/TooltipPage/TooltipPage';
 import ModalPage from './pages/ModalPage/ModalPage';
+import FormPage from './pages/FormPage/FormPage';
 
 
 const router = createBrowserRouter([
@@ -48,8 +49,8 @@ const router = createBrowserRouter([
         element: <ModalPage />
       },
       {
-        path: "*",
-        element: <NoMatchPage />
+        path: "form",
+        element: <FormPage />
       },
       {
         path: "users",
@@ -67,7 +68,14 @@ const router = createBrowserRouter([
           }
         ]
       },
-
+      {
+        path: "react-template",
+        element: <Protected/>
+      },
+      {
+        path: "*",
+        element: <NoMatchPage />
+      },
     ]
   }
 

@@ -59,6 +59,16 @@ export default function Navbar() {
 							Modal example
 						</NavLink>
 					</li>
+					<li>
+						<NavLink
+							to='form'
+							style={({ isActive }) => ({
+								color: isActive ? 'white' : '#485F73',
+								textDecoration: 'none'
+							})}>
+							Form example
+						</NavLink>
+					</li>
 				</ul>
 			</nav>
 			<ProfileImage />

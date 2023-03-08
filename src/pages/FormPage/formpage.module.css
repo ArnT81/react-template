@@ -1,0 +1,5 @@
+.formpage {
+	display: grid;
+	place-items: center;
+	min-height: var(--main-height);
+}

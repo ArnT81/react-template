@@ -15,6 +15,7 @@ export default function LoginPage() {
 			<div className={styles.loginpage}>
 				<div>
 					<h1>Please log in to see content</h1>
+					<h2>links name "example" not protected</h2>
 					<Login />
 				</div>
 			</div>
