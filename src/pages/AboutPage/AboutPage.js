@@ -46,17 +46,8 @@ export default function AboutPage() {
 						Prefer to work in React since I love their solution with reusable components and flat architecture.
 					</p>
 					<p>
-						I also spend a lot of my spare time coding and got some projects in production, whereof one for a company that had a revenue of 1.387 billion last year.
-						This particular project receives data over the MQTT protocol and logs the values in real time in a chart.
-
-						Scanning start
-
-						saves to csv
-
-						load static files to chart
-
-						print to PDF
-
+						I also spend a lot of my spare time coding and got some projects in production, whereof one for a company that had a revenue of 1.387 billion last year. This particular project receives data over the MQTT protocol and logs the values in real time in a chart. The logging starts by scanning a barcode of productnr. and the station number.
+						It also features ability to save the data into csv, open previously saved csv files and print parts of or the whole screen to PDF.
 					</p>
 				</Container>
 			</Container>
