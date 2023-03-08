@@ -4,7 +4,7 @@ import styles from './userspage.module.css';
 import Container from '../../components/Container/Container';
 
 
-export default function RandomUsers() {
+export default function UsersPage() {
 	return (
 		<div className={styles.userspage}>
 			<Container>
@@ -62,7 +62,6 @@ export default function RandomUsers() {
 					</ul>
 				</nav>
 			</Container>
-			<h1>Users</h1>
 			<Outlet />
 		</div>
 	)

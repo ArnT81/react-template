@@ -47,79 +47,49 @@ export default function Tooltip({ title, children, active, delay, position, marg
 			y: Math.abs(child.height - tooltip.height)
 		}
 
+		const centerTooltip = (axis, childElement, diff) => {
+			if (axis === 'x') {
+				if (child.width > tooltip.width) return childElement + diff;
+				else return childElement - diff;
+			}
+			else if (axis === 'y') {
+				if (child.height > tooltip.height) return childElement + diff;
+				else return childElement - diff
+			};
+		}
+
 
 		if (position === 'top') {
-			const top = child.top - tooltip.height - margin;
-
-			if (child.width > tooltip.width) {
-				return {
-					top: top,
-					left: child.left + difference.x / 2
-				}
-			}
-			else {
-				return {
-					top: top,
-					left: child.left - difference.x / 2
-				}
+			return {
+				top: child.top - tooltip.height - margin,
+				left: centerTooltip('x', child.left, difference.x / 2)
 			}
 		}
-
 		else if (position === 'bottom') {
-			const top = child.top + child.height + margin;
-
-			if (child.width > tooltip.width) {
-				return {
-					top: top,
-					left: child.left + difference.x / 2
-				}
-			}
-			else {
-				return {
-					top: top,
-					left: child.left - difference.x / 2
-				}
+			return {
+				top: child.top + child.height + margin,
+				left: centerTooltip('x', child.left, difference.x / 2)
 			}
 		}
-
 		else if (position === 'left') {
-			const left = child.left - tooltip.width - margin;
-
-			if (child.height > tooltip.height) {
-				return {
-					top: child.top + difference.y / 2,
-					left: left
-				}
-			}
-			else {
-				return {
-					top: child.top - difference.y / 2,
-					left: left
-				}
+			return {
+				top: centerTooltip('y', child.top, difference.y / 2),
+				left: child.left - tooltip.width - margin
 			}
 		}
-
 		else if (position === 'right') {
-			const left = child.left + child.width + margin;
-
-			if (child.height > tooltip.height) {
-				return {
-					top: child.top + difference.y / 2,
-					left: left
-				}
+			return {
+				top: centerTooltip('y', child.top, difference.y / 2),
+				left: child.left + child.width + margin
 			}
-			else {
-				return {
-					top: child.top - difference.y / 2,
-					left: left
-				}
-			}
-		} else return
+		}
 	}
+
 
 	if (!active) {
 		return <div ref={childRef}>{children}</div>
 	}
+
 
 	return (
 		<div>

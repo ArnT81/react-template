@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate, Link, useLoaderData } from 'react-router-dom';
 import Button from '../Button/Button';
 import Container from '../Container/Container';
-import styles from './singleuserpage.module.css';
+import styles from './usersingle.module.css';
 
-export default function SingleUser() {
+export default function UserSingle() {
 	const [showContact, setShowContact] = useState(false);
 	const navigate = useNavigate();
 	const user = useLoaderData();
@@ -15,7 +15,7 @@ export default function SingleUser() {
 
 
 	return (
-		<div className={styles.singleuserpage}>
+		<div className={styles.usersingle}>
 			<h1>User</h1>
 
 			<Container
@@ -46,11 +46,9 @@ export default function SingleUser() {
 
 			<Button
 				title='go back button'
-				disabled={true}
 				onClick={() => navigate(-1)}
 			/>
-			<br />
-			<br />
+			
 			<Link to={-1}>
 				Go back link
 			</Link>

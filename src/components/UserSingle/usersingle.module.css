@@ -1,0 +1,6 @@
+.usersingle {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing);
+	align-items: center;
+}

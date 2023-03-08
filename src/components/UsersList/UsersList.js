@@ -3,9 +3,7 @@ import { useNavigate, useLoaderData } from 'react-router-dom';
 import Container from '../Container/Container';
 
 
-
-
-export default function ListUsers() {
+export default function UsersList() {
 	const navigate = useNavigate();
 	const users = useLoaderData();
 
@@ -16,8 +14,8 @@ export default function ListUsers() {
 
 	return (
 		<div>
-			<h4>Alla users</h4>
-			<p>click a user to show detailed information</p>
+			<h4> List of users</h4>
+			<p>select a user to show detailed information</p>
 			<br />
 			<Container
 				background='white'

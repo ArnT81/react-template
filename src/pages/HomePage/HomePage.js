@@ -38,9 +38,8 @@ export default function HomePage() {
 			<h1>Welcome {user.givenName || user.email}</h1>
 
 			<Tooltip
-				// title='You can not click this right now'
+				title='This button is disabled'
 				active={disabled}
-				position='right'
 			>
 				<Button
 					title='go back button'
