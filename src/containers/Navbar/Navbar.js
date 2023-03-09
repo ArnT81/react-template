@@ -2,9 +2,13 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import ProfileImage from '../../components/ProfileImage/ProfileImage';
 import styles from './navbar.module.css';
+import { UserAuth } from '../../context/AuthContext';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 
 export default function Navbar() {
+	const { logoutGoogle } = UserAuth()
+
 	return (
 		<div className={styles.navbar}>
 			<nav>
@@ -71,7 +75,14 @@ export default function Navbar() {
 					</li>
 				</ul>
 			</nav>
-			<ProfileImage />
+			<Dropdown
+				component={<ProfileImage />}
+			>
+				<p onClick={logoutGoogle}>
+					Log Out
+				</p>
+			</Dropdown>
 		</div>
 	)
 }
+

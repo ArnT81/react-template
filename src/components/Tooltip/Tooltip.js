@@ -35,10 +35,6 @@ export default function Tooltip({ title, children, active, delay, position, marg
 		param ? setShowTooltip(true) : setShowTooltip(false)
 	}
 
-	//todo fade in tooltip on delay
-	//todo onResize
-	//todo caret
-	//todo maybe destruct getClientRects
 
 	const getPosition = (position) => {
 		const { child, tooltip } = elements;
@@ -57,7 +53,6 @@ export default function Tooltip({ title, children, active, delay, position, marg
 				else return childElement - diff
 			};
 		}
-
 
 		if (position === 'top') {
 			return {
@@ -84,7 +79,6 @@ export default function Tooltip({ title, children, active, delay, position, marg
 			}
 		}
 	}
-
 
 	if (!active) {
 		return <div ref={childRef}>{children}</div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { UserAuth } from '../../context/AuthContext'
 import Logout from '../../components/Logout/Logout'
 import styles from './homepage.module.css'
