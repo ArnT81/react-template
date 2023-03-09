@@ -15,7 +15,10 @@ export default function LoginPage() {
 			<div className={styles.loginpage}>
 				<div>
 					<h1>Please log in to see content</h1>
-					<h2>links name "example" not protected</h2>
+					<h2>links named "example" is not protected</h2>
+					<h3>
+						No forwardRefs and tedious implementation, only local components that requires wrapping to work.
+					</h3>
 					<Login />
 				</div>
 			</div>

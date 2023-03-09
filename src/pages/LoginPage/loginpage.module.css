@@ -5,9 +5,13 @@
 }
 
 .loginpage>div {
+	display: flex;
+	flex-direction: column;
 	text-align: center;
+	align-items: center;
+	width: 60%;
 }
 
-.loginpage h1, h2 {
+.loginpage h1, h2,h3  {
 	padding-bottom: var(--spacing);
 }

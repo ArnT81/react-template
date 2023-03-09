@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import './index.css';
 // import App from './App';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthContextProvider } from './context/AuthContext';
 import { UserDeviceProvider } from './context/UserDeviceContext';
 import Layout from './pages/Layout';
@@ -70,7 +71,7 @@ const router = createBrowserRouter([
       },
       {
         path: "react-template",
-        element: <Protected/>
+        element: <Protected />
       },
       {
         path: "*",
@@ -78,14 +79,16 @@ const router = createBrowserRouter([
       },
     ]
   }
-
 ]);
 
+const clientId = process.env.REACT_APP_OAUTH_CLIENTID;
 
 createRoot(document.getElementById('root')).render(
-  <AuthContextProvider>
-    <UserDeviceProvider>
-      <RouterProvider router={router} />
-    </UserDeviceProvider>
-  </AuthContextProvider>
+  <GoogleOAuthProvider clientId={clientId}>
+    <AuthContextProvider>
+      <UserDeviceProvider>
+        <RouterProvider router={router} />
+      </UserDeviceProvider>
+    </AuthContextProvider>
+  </GoogleOAuthProvider>
 );

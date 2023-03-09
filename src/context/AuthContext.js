@@ -1,4 +1,6 @@
 import { useContext, createContext, useState } from "react";
+import { googleLogout } from '@react-oauth/google';
+import jwt_decode from "jwt-decode";
 
 const AuthContext = createContext()
 
@@ -6,19 +8,28 @@ const AuthContext = createContext()
 export const AuthContextProvider = ({ children }) => {
 	const [user, setUser] = useState();
 
-	const updateUser = (user) => {
-		if (user) {
-			setUser(user)
-		} else {
-			setUser()
-		}
+	const loginWithGoogle = (jwt) => {
+		const decoded = jwt_decode(jwt.credential)
+
+		setUser({
+			name: decoded.name,
+			email: decoded.email,
+			exp: decoded.exp,
+			image: decoded.picture,
+		})
+	}
+
+	const logoutGoogle = () => {
+		googleLogout();
+		setUser();
 	}
 
 
 	return (
 		<AuthContext.Provider
 			value={{
-				updateUser,
+				loginWithGoogle,
+				logoutGoogle,
 				user
 			}}>
 			{children}
