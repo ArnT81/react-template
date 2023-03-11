@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import useResize from './useResize';
 
 export default function useClientRect(parent, child) {
 	const [object, setObject] = useState({});
+	const resized = useResize();
 
 	useEffect(() => {
 		const parentElement = parent.current.getClientRects()[0];
@@ -27,7 +29,7 @@ export default function useClientRect(parent, child) {
 			},
 			...childElementIfPresent
 		})
-	}, [parent, child])
+	}, [parent, child, resized])
 
 	return object;
 }

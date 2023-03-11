@@ -24,9 +24,7 @@ import ModalPage from './pages/ModalPage/ModalPage';
 import FormPage from './pages/FormPage/FormPage';
 
 //todo Dropdown not dynamically positioned yet
-//todo tooltip onResize
 //todo tooltip caret
-//todo tooltip maybe destruct getClientRects
 
 const router = createBrowserRouter([
   {
