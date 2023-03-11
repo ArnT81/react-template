@@ -1,35 +1,18 @@
 import React, { useRef, useState, useEffect } from 'react'
+import PropTypes from 'prop-types';
 import Container from '../Container/Container'
-
+import useClientRect from '../../customhooks/useClientRect';
 
 export default function Tooltip({ title, children, active, delay, position, margin }) {
-	const [elements, setElements] = useState({
-		child: { width: 0, height: 0, left: 0, top: 0 },
-		tooltip: { width: 0, height: 0, left: 0, top: 0 }
-	});
 	const [showTooltip, setShowTooltip] = useState(false);
 	const childRef = useRef();
 	const tooltipRef = useRef();
+	const rect = useClientRect(tooltipRef, childRef);
+
 
 	useEffect(() => {
-		const childElement = childRef.current.getClientRects()[0];
-		const tooltipElement = tooltipRef?.current?.getClientRects()[0];
-
-		tooltipElement && setElements({
-			child: {
-				width: childElement.width,
-				height: childElement.height,
-				left: childElement.x,
-				top: childElement.y,
-			},
-			tooltip: {
-				width: tooltipElement.width,
-				height: tooltipElement.height,
-				left: tooltipElement.x,
-				top: tooltipElement.y,
-			}
-		})
-	}, []);
+		getPosition(position)
+	}, [rect]);
 
 	const setDelay = (desiredDelay) => {
 		if (!desiredDelay || desiredDelay === 'none') {
@@ -55,45 +38,48 @@ export default function Tooltip({ title, children, active, delay, position, marg
 	}
 
 	const getPosition = (position) => {
-		const { child, tooltip } = elements;
-		const difference = {
-			x: Math.abs(child.width - tooltip.width),
-			y: Math.abs(child.height - tooltip.height)
-		}
+		const { childElement, parentElement } = rect;
 
-		const centerTooltip = (axis, childElement, diff) => {
-			if (axis === 'x') {
-				if (child.width > tooltip.width) return childElement + diff;
-				else return childElement - diff;
+		if (childElement && parentElement) {
+			const difference = {
+				x: Math.abs(childElement.width - parentElement.width),
+				y: Math.abs(childElement.height - parentElement.height)
 			}
-			else if (axis === 'y') {
-				if (child.height > tooltip.height) return childElement + diff;
-				else return childElement - diff
-			};
-		}
 
-		if (position === 'top') {
-			return {
-				top: child.top - tooltip.height - margin,
-				left: centerTooltip('x', child.left, difference.x / 2)
+			const centerTooltip = (axis, child, diff) => {
+				if (axis === 'x') {
+					if (childElement.width > parentElement.width) return child + diff;
+					else return child - diff;
+				}
+				else if (axis === 'y') {
+					if (childElement.height > parentElement.height) return child + diff;
+					else return child - diff
+				};
 			}
-		}
-		else if (position === 'bottom') {
-			return {
-				top: child.top + child.height + margin,
-				left: centerTooltip('x', child.left, difference.x / 2)
+
+			if (position === 'top') {
+				return {
+					top: childElement.y - parentElement.height - margin,
+					left: centerTooltip('x', childElement.x, difference.x / 2)
+				}
 			}
-		}
-		else if (position === 'left') {
-			return {
-				top: centerTooltip('y', child.top, difference.y / 2),
-				left: child.left - tooltip.width - margin
+			else if (position === 'bottom') {
+				return {
+					top: childElement.y + childElement.height + margin,
+					left: centerTooltip('x', childElement.x, difference.x / 2)
+				}
 			}
-		}
-		else if (position === 'right') {
-			return {
-				top: centerTooltip('y', child.top, difference.y / 2),
-				left: child.left + child.width + margin
+			else if (position === 'left') {
+				return {
+					top: centerTooltip('y', childElement.y, difference.y / 2),
+					left: childElement.x - parentElement.width - margin
+				}
+			}
+			else if (position === 'right') {
+				return {
+					top: centerTooltip('y', childElement.y, difference.y / 2),
+					left: childElement.x + childElement.width + margin
+				}
 			}
 		}
 	}
@@ -129,4 +115,10 @@ Tooltip.defaultProps = {
 	position: 'bottom',
 	margin: 8,
 	delay: 'none'
+}
+Tooltip.propTypes = {
+	title: PropTypes.string,
+	position: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+	margin: PropTypes.number,
+	delay: PropTypes.oneOf(['none', 'short', 'long'])
 }
