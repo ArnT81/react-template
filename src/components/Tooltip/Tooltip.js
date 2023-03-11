@@ -31,10 +31,28 @@ export default function Tooltip({ title, children, active, delay, position, marg
 		})
 	}, []);
 
-	const showTooltipOnHover = (param) => {
-		param ? setShowTooltip(true) : setShowTooltip(false)
+	const setDelay = (desiredDelay) => {
+		if (!desiredDelay || desiredDelay === 'none') {
+			tooltipRef.current.style["transition-delay"] = '0s'
+		}
+		else if (desiredDelay === 'short') {
+			tooltipRef.current.style["transition-delay"] = '.2s'
+		}
+		else if (desiredDelay === 'long') {
+			tooltipRef.current.style["transition-delay"] = '.4s'
+		}
 	}
 
+	const showTooltipOnHover = (param) => {
+		if (param) {
+			setDelay(delay)
+			setShowTooltip(true);
+		}
+		else {
+			setDelay('none')
+			setShowTooltip(false);
+		}
+	}
 
 	const getPosition = (position) => {
 		const { child, tooltip } = elements;
@@ -109,5 +127,6 @@ export default function Tooltip({ title, children, active, delay, position, marg
 Tooltip.defaultProps = {
 	title: 'Add title prop',
 	position: 'bottom',
-	margin: 8
+	margin: 8,
+	delay: 'none'
 }
