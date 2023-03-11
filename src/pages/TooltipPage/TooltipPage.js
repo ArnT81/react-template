@@ -15,6 +15,7 @@ export default function TooltipPage() {
 				title='This button is disabled'
 				active={disabled}
 				position='top'
+				background='var(--secondary-color)'
 			>
 				<Button
 					title='example'
